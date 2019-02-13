@@ -2,6 +2,7 @@ import AuthenticationContext from './msadal/AuthenticationContext';
 var AuthenticationResult = require("./msadal/AuthenticationResult");
 
 function MSAdalLogin(authority, clientId, redirectUri, resourceUri) {
+  console.log('logging in');
   // Shows the user authentication dialog box if required
 
   return new Promise(function(resolve, reject) {
@@ -50,7 +51,7 @@ function MSAdalLogout(authority, redirectUri) {
 function getValidMSAdalToken(authority, resourceUri) {
   let context = new AuthenticationContext(authority);
   return context.tokenCache.readItems().then(function(items) {
-    for (i = items.length - 1; i >= 0; i--) {
+    for (let i = items.length - 1; i >= 0; i--) {
       let lastToken = items[i];
       let requestedResourceUri = resourceUri || lastToken.resourceUri;
       if ( lastToken.accessToken
