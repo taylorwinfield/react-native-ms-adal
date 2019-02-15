@@ -2,7 +2,6 @@ import AuthenticationContext from './msadal/AuthenticationContext';
 var AuthenticationResult = require("./msadal/AuthenticationResult");
 
 function MSAdalLogin(authority, clientId, redirectUri, resourceUri) {
-  console.log('logging in');
   // Shows the user authentication dialog box if required
 
   return new Promise(function(resolve, reject) {
