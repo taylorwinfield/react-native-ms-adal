@@ -11,7 +11,9 @@ function MSAdalLogin(authority, clientId, redirectUri, resourceUri) {
     let context = new AuthenticationContext(authority);
     context.tokenCache.readItems().then(function(items) {
       if (items.length > 0) {
-        context = new AuthenticationContext(items[0].authority);
+        if (items[0].authority === authority) {
+          context = new AuthenticationContext(items[0].authority);
+        }
       }
 
       // Attempt to authorize the user silently
